@@ -59,7 +59,7 @@ export function tileInfo(
       const region = findRegion(content, choice.regionId);
       if (!region) continue;
       if (!place) place = region.name;
-      if (!className && region.classes?.length) className = region.classes[0];
+      if (!className && region.classes?.length) className = region.classes[0] ?? "";
     }
   }
   return {

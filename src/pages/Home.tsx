@@ -18,8 +18,9 @@ export default function Home() {
   if (!content) return null;
 
   const startCreate = () => {
-    if (content.settings.length === 1) {
-      const c = createCharacter(content.settings[0].id);
+    const only = content.settings[0];
+    if (content.settings.length === 1 && only) {
+      const c = createCharacter(only.id);
       navigate(`/create/${c.id}`);
     } else {
       setPickSetting(true);

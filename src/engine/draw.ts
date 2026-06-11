@@ -36,10 +36,12 @@ export function drawAnswers(step: QuestionStep, seed: number): Answer[] {
   const idx = pool.map((_, i) => i);
   for (let i = idx.length - 1; i > 0; i--) {
     const j = Math.floor(rand() * (i + 1));
-    [idx[i], idx[j]] = [idx[j], idx[i]];
+    const a = idx[i] as number;
+    idx[i] = idx[j] as number;
+    idx[j] = a;
   }
   return idx
     .slice(0, count)
     .sort((a, b) => a - b)
-    .map((i) => pool[i]);
+    .flatMap((i) => (pool[i] ? [pool[i] as typeof pool[number]] : []));
 }

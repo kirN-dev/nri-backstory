@@ -45,7 +45,11 @@ export default function CreateWizard() {
 
   const ribbon: { id: string; title: string; status: string }[] = [
     { id: NAME_STEP, title: "Имя", status: character.name?.trim() ? "done" : "available" },
-    ...setting.steps.map((s) => ({ id: s.id, title: s.title, status: state.statuses[s.id] })),
+    ...setting.steps.map((s) => ({
+      id: s.id,
+      title: s.title,
+      status: state.statuses[s.id] ?? "locked",
+    })),
   ];
   const navigable = ribbon.filter((r) => r.status !== "locked").map((r) => r.id);
   const curIdx = navigable.indexOf(currentId);
@@ -58,7 +62,8 @@ export default function CreateWizard() {
   };
 
   const goNext = () => {
-    if (curIdx < navigable.length - 1) setCurrentId(navigable[curIdx + 1]);
+    const next = navigable[curIdx + 1];
+    if (next !== undefined) setCurrentId(next);
   };
 
   return (
@@ -129,7 +134,10 @@ export default function CreateWizard() {
       <div className="fixed inset-x-0 bottom-0 border-t border-stone-800 bg-stone-950/95 px-4 py-3 backdrop-blur">
         <div className="mx-auto flex max-w-3xl items-center gap-2">
           <button
-            onClick={() => curIdx > 0 && setCurrentId(navigable[curIdx - 1])}
+            onClick={() => {
+              const prev = navigable[curIdx - 1];
+              if (curIdx > 0 && prev !== undefined) setCurrentId(prev);
+            }}
             disabled={curIdx <= 0}
             className="min-h-[44px] rounded-xl border border-stone-700 px-5 disabled:opacity-40"
           >
