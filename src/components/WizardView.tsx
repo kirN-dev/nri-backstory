@@ -63,9 +63,9 @@ export default function WizardView({
             disabled={r.status === "locked"}
             onClick={() => setCurrentId(r.id)}
             title={r.status === "locked" ? "Зависит от предыдущих выборов" : undefined}
-            className={`min-h-[44px] whitespace-nowrap rounded-full border px-4 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 ${
+            className={`min-h-[44px] whitespace-nowrap rounded-full border px-4 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 ${
               r.id === currentId
-                ? "border-amber-500 bg-amber-600/20"
+                ? "border-violet-400 bg-violet-400/20"
                 : r.status === "locked"
                   ? "cursor-not-allowed border-stone-800 text-stone-600"
                   : "border-stone-700 hover:border-stone-500"
@@ -79,7 +79,7 @@ export default function WizardView({
 
       <div className="mt-2 h-1.5 w-full rounded bg-stone-800">
         <div
-          className="h-1.5 rounded bg-amber-600 transition-all"
+          className="h-1.5 rounded bg-gradient-to-r from-violet-400 to-purple-300 transition-all"
           style={{ width: `${Math.round(state.completion * 100)}%` }}
         />
       </div>
@@ -94,7 +94,7 @@ export default function WizardView({
                 onCharacter({ ...character, name: e.target.value, updatedAt: new Date().toISOString() })
               }
               placeholder="Имя персонажа"
-              className="mt-4 w-full rounded-xl border border-stone-700 bg-stone-900 px-4 py-3 focus:border-amber-500 focus:outline-none"
+              className="mt-4 w-full rounded-xl border border-stone-700 bg-stone-900 px-4 py-3 focus:border-violet-400 focus:outline-none"
             />
           </div>
         )}
@@ -141,7 +141,7 @@ export default function WizardView({
           <div className="flex-1" />
           <button
             onClick={() => setReportOpen(true)}
-            className="min-h-[44px] rounded-xl border border-amber-700 px-5 text-amber-400 hover:border-amber-500"
+            className="min-h-[44px] rounded-xl border border-violet-700 px-5 text-violet-300 hover:border-violet-400"
           >
             Отчёт
           </button>
@@ -149,7 +149,7 @@ export default function WizardView({
             onClick={onComplete}
             disabled={!allDone}
             title={!allDone ? "Заполните все доступные шаги" : undefined}
-            className="min-h-[44px] rounded-xl bg-amber-600 px-5 font-semibold text-stone-950 disabled:opacity-40"
+            className="min-h-[44px] rounded-xl bg-gradient-to-r from-violet-400 to-purple-300 px-5 font-semibold text-stone-950 disabled:opacity-40"
           >
             Завершить
           </button>
@@ -177,7 +177,7 @@ export default function WizardView({
             <h2 className="text-lg font-semibold">Изменение затронет другие шаги</h2>
             <p className="mt-2 text-stone-300">
               Эти шаги больше не подходят под новый выбор, их ответы будут сброшены:{" "}
-              <span className="text-amber-400">
+              <span className="text-violet-300">
                 {orphanConfirm
                   .map((sid) => setting.steps.find((s) => s.id === sid)?.title ?? sid)
                   .join(", ")}
@@ -189,7 +189,7 @@ export default function WizardView({
                   onCharacter(withoutChoices(character, orphanConfirm));
                   setOrphanConfirm(null);
                 }}
-                className="min-h-[44px] rounded-xl bg-amber-600 px-5 font-semibold text-stone-950"
+                className="min-h-[44px] rounded-xl bg-gradient-to-r from-violet-400 to-purple-300 px-5 font-semibold text-stone-950"
               >
                 Сбросить и продолжить
               </button>
@@ -236,8 +236,8 @@ function QuestionView({
               key={a.id}
               onClick={() => toggle(a.id)}
               aria-pressed={on}
-              className={`min-h-[44px] rounded-xl border px-4 py-3 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 ${
-                on ? "border-amber-500 bg-amber-600/15" : "border-stone-700 hover:border-stone-500"
+              className={`min-h-[44px] rounded-xl border px-4 py-3 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 ${
+                on ? "border-violet-400 bg-violet-400/15" : "border-stone-700 hover:border-stone-500"
               }`}
             >
               {a.label}

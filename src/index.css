@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 @layer base {
-  body { @apply bg-stone-950 text-stone-100 antialiased; }
+  body {
+    @apply text-stone-100 antialiased;
+    background: linear-gradient(160deg, #0c0a12 0%, #100d1c 45%, #0c0a09 100%);
+    min-height: 100vh;
+  }
 }
 
 /* --- интерактивная карта --- */
@@ -19,13 +23,13 @@
 .svg-map .region-group * { stroke-width: 3; } /* группы — толстые границы */
 .svg-map .region:hover, .svg-map .region--hover.region,
 .svg-map .region-group:hover *, .svg-map .region--hover.region-group * {
-  stroke: #f59e0b;
+  stroke: #c4b5fd;
   filter: brightness(1.2);
 }
 .svg-map .region--selected.region,
 .svg-map .region--selected.region-group * {
-  stroke: #f59e0b;
+  stroke: #c4b5fd;
   stroke-width: 3.5;
   filter: brightness(1.35);
 }
-.svg-map [tabindex="0"]:focus-visible { outline: 2px solid #fcd34d; outline-offset: 2px; }
+.svg-map [tabindex="0"]:focus-visible { outline: 2px solid #ddd6fe; outline-offset: 2px; }

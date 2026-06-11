@@ -4,7 +4,7 @@ import { useAdminStore } from "../../store/adminStore";
 import { blankMap, blankRegion, idsFromSvgText, renameRegionId } from "../../admin/draftLogic";
 
 const inputCls =
-  "w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 focus:border-amber-500 focus:outline-none";
+  "w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 focus:border-violet-400 focus:outline-none";
 const btnCls = "min-h-[44px] rounded-xl border border-stone-700 px-3 hover:border-stone-500";
 const smallBtn = "min-h-[36px] rounded-lg border border-stone-700 px-2 text-sm hover:border-stone-500";
 
@@ -37,7 +37,7 @@ export default function MapsTab() {
             key={m.id}
             onClick={() => setSelId(m.id)}
             className={`rounded-xl border px-3 py-2 text-left ${
-              m.id === selId ? "border-amber-500 bg-amber-600/15" : "border-stone-700 hover:border-stone-500"
+              m.id === selId ? "border-violet-400 bg-violet-400/15" : "border-stone-700 hover:border-stone-500"
             }`}
           >
             {m.title || m.id}

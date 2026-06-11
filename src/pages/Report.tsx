@@ -65,7 +65,7 @@ export default function Report() {
       </article>
 
       <div className="mt-6 flex flex-wrap gap-3">
-        <button onClick={copy} className="min-h-[44px] rounded-xl bg-amber-600 px-5 font-semibold text-stone-950">
+        <button onClick={copy} className="min-h-[44px] rounded-xl bg-gradient-to-r from-violet-400 to-purple-300 px-5 font-semibold text-stone-950">
           {copied ? "Скопировано ✓" : "Копировать текст"}
         </button>
         <button onClick={download} className="min-h-[44px] rounded-xl border border-stone-600 px-5 hover:border-stone-400">

@@ -44,13 +44,13 @@ export default function Home() {
       <div className="mt-6 flex flex-wrap gap-3">
         <button
           onClick={startCreate}
-          className="min-h-[44px] rounded-xl bg-amber-600 px-6 py-3 font-semibold text-stone-950 hover:bg-amber-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+          className="min-h-[44px] rounded-xl bg-gradient-to-r from-violet-400 to-purple-300 px-6 py-3 font-semibold text-stone-950 hover:from-violet-300 hover:to-purple-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300"
         >
           + Создать новую предысторию
         </button>
         <button
           onClick={() => fileRef.current?.click()}
-          className="min-h-[44px] rounded-xl border border-stone-600 px-6 py-3 hover:border-stone-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+          className="min-h-[44px] rounded-xl border border-stone-600 px-6 py-3 hover:border-stone-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300"
         >
           Импорт из файла
         </button>
@@ -79,7 +79,7 @@ export default function Home() {
                   const c = createCharacter(s.id);
                   navigate(`/create/${c.id}`);
                 }}
-                className="rounded-xl border border-stone-700 p-4 text-left hover:border-amber-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+                className="rounded-xl border border-stone-700 p-4 text-left hover:border-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300"
               >
                 <div className="font-semibold">{s.title}</div>
                 <div className="mt-1 text-sm text-stone-400">{s.description}</div>
@@ -109,7 +109,7 @@ export default function Home() {
                       setActive(c.id);
                       navigate(draft ? `/create/${c.id}` : `/report/${c.id}`);
                     }}
-                    className="relative rounded-xl border border-stone-700 p-4 text-left hover:border-amber-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+                    className="relative rounded-xl border border-stone-700 p-4 text-left hover:border-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300"
                   >
                     {draft && (
                       <span className="absolute right-3 top-3 rounded bg-stone-700 px-2 py-0.5 text-xs">

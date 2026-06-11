@@ -39,7 +39,7 @@ export default function Admin() {
         {pwdError && <p className="mt-2 text-red-400">Неверный пароль</p>}
         <button
           onClick={() => (pwd === PASSWORD ? setAuthed(true) : setPwdError(true))}
-          className="mt-4 min-h-[44px] w-full rounded-xl bg-amber-600 px-5 font-semibold text-stone-950"
+          className="mt-4 min-h-[44px] w-full rounded-xl bg-gradient-to-r from-violet-400 to-purple-300 px-5 font-semibold text-stone-950"
         >
           Войти
         </button>
@@ -55,7 +55,7 @@ export default function Admin() {
           <button
             onClick={() => siteContent && setDraft(structuredClone(siteContent))}
             disabled={!siteContent}
-            className="min-h-[44px] rounded-xl bg-amber-600 px-5 py-3 text-left font-semibold text-stone-950 disabled:opacity-40"
+            className="min-h-[44px] rounded-xl bg-gradient-to-r from-violet-400 to-purple-300 px-5 py-3 text-left font-semibold text-stone-950 disabled:opacity-40"
           >
             Начать с текущего контента сайта
             <span className="block text-sm font-normal">обычный режим работы</span>
@@ -113,7 +113,7 @@ export default function Admin() {
       <div className="flex flex-wrap items-center gap-2">
         <h1 className="text-xl font-bold">Конструктор</h1>
         <div className="flex-1" />
-        <button onClick={doExport} className="min-h-[44px] rounded-xl bg-amber-600 px-5 font-semibold text-stone-950">
+        <button onClick={doExport} className="min-h-[44px] rounded-xl bg-gradient-to-r from-violet-400 to-purple-300 px-5 font-semibold text-stone-950">
           Экспорт content.json
         </button>
         <button
@@ -172,7 +172,7 @@ export default function Admin() {
             key={t}
             onClick={() => setTab(t)}
             className={`min-h-[44px] rounded-xl border px-4 ${
-              tab === t ? "border-amber-500 bg-amber-600/20" : "border-stone-700 hover:border-stone-500"
+              tab === t ? "border-violet-400 bg-violet-400/20" : "border-stone-700 hover:border-stone-500"
             }`}
           >
             {label}

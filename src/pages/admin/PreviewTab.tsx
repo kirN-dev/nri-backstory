@@ -28,7 +28,7 @@ export default function PreviewTab() {
                 setFinished(false);
                 setCharacter(newCharacter(s.id));
               }}
-              className="min-h-[44px] rounded-xl border border-stone-700 px-4 py-3 text-left hover:border-amber-500"
+              className="min-h-[44px] rounded-xl border border-stone-700 px-4 py-3 text-left hover:border-violet-400"
             >
               ▶ Пройти «{s.title || s.id}»
             </button>

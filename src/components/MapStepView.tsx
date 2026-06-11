@@ -126,7 +126,7 @@ export default function MapStepView({
 
       {selectedId && (
         <p className="mt-3 text-sm">
-          Выбрано: <span className="text-amber-400">{map.regions.find((r) => r.id === selectedId)?.name}</span>
+          Выбрано: <span className="text-violet-300">{map.regions.find((r) => r.id === selectedId)?.name}</span>
         </p>
       )}
 
@@ -141,7 +141,7 @@ export default function MapStepView({
               key={r.id}
               onClick={() => setPreview(r)}
               className={`min-h-[44px] rounded-xl border px-4 py-2 text-left ${
-                selectedId === r.id ? "border-amber-500 bg-amber-600/15" : "border-stone-700 hover:border-stone-500"
+                selectedId === r.id ? "border-violet-400 bg-violet-400/15" : "border-stone-700 hover:border-stone-500"
               }`}
             >
               {r.name}
@@ -153,7 +153,7 @@ export default function MapStepView({
       <button
         onClick={onContinue}
         disabled={!selectedId}
-        className="mt-5 min-h-[44px] rounded-xl bg-amber-600 px-6 py-3 font-semibold text-stone-950 disabled:opacity-40"
+        className="mt-5 min-h-[44px] rounded-xl bg-gradient-to-r from-violet-400 to-purple-300 px-6 py-3 font-semibold text-stone-950 disabled:opacity-40"
       >
         Продолжить с выбранным регионом
       </button>
@@ -208,7 +208,7 @@ export default function MapStepView({
                   onPick({ kind: "region", regionId: preview.id });
                   setPreview(null);
                 }}
-                className="min-h-[44px] w-full rounded-xl bg-amber-600 px-6 py-3 font-semibold text-stone-950"
+                className="min-h-[44px] w-full rounded-xl bg-gradient-to-r from-violet-400 to-purple-300 px-6 py-3 font-semibold text-stone-950"
               >
                 Выбрать этот регион
               </button>
