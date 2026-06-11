@@ -24,6 +24,7 @@ interface PlayerState {
     choice: Choice,
   ) => string[]; // возвращает осиротевшие шаги (UI решит, подтверждать ли сброс)
   clearChoices: (stepIds: string[]) => void;
+  replaceCharacter: (character: Character) => void;
   setName: (name: string) => void;
   completeCharacter: () => void;
   deleteCharacter: (id: string) => void;
@@ -78,6 +79,11 @@ export const usePlayerStore = create<PlayerState>((set, get) => {
     },
 
     clearChoices: (stepIds) => updateActive((c) => withoutChoices(c, stepIds)),
+
+    replaceCharacter: (character) =>
+      set((s) => ({
+        characters: s.characters.map((c) => (c.id === character.id ? character : c)),
+      })),
 
     setName: (name) =>
       updateActive((c) => ({ ...c, name, updatedAt: new Date().toISOString() })),
