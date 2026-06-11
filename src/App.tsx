@@ -1,47 +1,39 @@
-import { createHashRouter, NavLink, Outlet } from 'react-router-dom';
-import StartPage from './pages/StartPage';
-import QuizPage from './pages/QuizPage';
-import ResultPage from './pages/ResultPage';
-import MapPage from './pages/MapPage';
-import AdminPage from './pages/AdminPage';
+import { useEffect } from "react";
+import { HashRouter, Route, Routes } from "react-router-dom";
+import { useContentStore } from "./store/contentStore";
+import Home from "./pages/Home";
+import CreateWizard from "./pages/CreateWizard";
+import Report from "./pages/Report";
+import Admin from "./pages/Admin";
 
-function Layout() {
-  const linkClass = ({ isActive }: { isActive: boolean }) =>
-    [
-      'px-3 py-2 rounded-md text-sm sm:text-base min-h-[44px] flex items-center transition-colors',
-      isActive ? 'bg-indigo-600 text-white' : 'text-gray-300 hover:bg-gray-800',
-    ].join(' ');
+export default function App() {
+  const { content, loading, error, load } = useContentStore();
+
+  useEffect(() => {
+    void load();
+  }, [load]);
+
+  if (error) {
+    return (
+      <main className="mx-auto max-w-2xl px-4 py-16">
+        <h1 className="text-xl font-bold text-red-400">Ошибка контента</h1>
+        <p className="mt-3 text-stone-300">{error}</p>
+      </main>
+    );
+  }
+  if (loading || !content) {
+    return <main className="px-4 py-16 text-center text-stone-400">Загрузка…</main>;
+  }
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="border-b border-gray-800 sticky top-0 bg-[#0f1115]/95 backdrop-blur z-10">
-        <nav className="max-w-3xl mx-auto px-3 py-2 flex flex-wrap gap-1 items-center">
-          <span className="font-semibold mr-2 text-indigo-400">НРИ</span>
-          <NavLink to="/" end className={linkClass}>Главная</NavLink>
-          <NavLink to="/quiz" className={linkClass}>Анкета</NavLink>
-          <NavLink to="/map" className={linkClass}>Карта</NavLink>
-          <NavLink to="/result" className={linkClass}>Результат</NavLink>
-          <NavLink to="/admin" className={linkClass}>Админ</NavLink>
-        </nav>
-      </header>
-      <main className="flex-1 max-w-3xl w-full mx-auto px-4 py-6">
-        <Outlet />
-      </main>
-    </div>
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/create/:id" element={<CreateWizard />} />
+        <Route path="/report/:id" element={<Report />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="*" element={<Home />} />
+      </Routes>
+    </HashRouter>
   );
 }
-
-export const router = createHashRouter([
-  {
-    path: '/',
-    element: <Layout />,
-    children: [
-      { index: true, element: <StartPage /> },
-      { path: 'quiz', element: <QuizPage /> },
-      { path: 'result', element: <ResultPage /> },
-      { path: 'map', element: <MapPage /> },
-      { path: 'admin', element: <AdminPage /> },
-      { path: '*', element: <StartPage /> },
-    ],
-  },
-]);

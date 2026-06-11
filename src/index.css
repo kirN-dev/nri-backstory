@@ -2,13 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: dark;
-}
-
-body {
-  margin: 0;
-  background-color: #0f1115;
-  color: #e7e9ee;
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+@layer base {
+  body { @apply bg-stone-950 text-stone-100 antialiased; }
 }
