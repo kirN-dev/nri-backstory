@@ -1,5 +1,102 @@
 {
   "version": 1,
-  "settings": [],
-  "maps": []
+  "settings": [
+    {
+      "id": "grimdark-empire",
+      "title": "Мрачная Империя",
+      "description": "Тёмное фэнтези на руинах павшего царства.",
+      "steps": [
+        {
+          "id": "homeland",
+          "title": "Родной край",
+          "type": "map",
+          "mapId": "world-map",
+          "showIf": []
+        },
+        {
+          "id": "district",
+          "title": "Квартал столицы",
+          "type": "map",
+          "mapId": "capital-map",
+          "showIf": [{ "flag": "from_capital", "equals": true }]
+        },
+        {
+          "id": "job",
+          "title": "Чем ты занимался?",
+          "type": "question",
+          "mode": "single",
+          "showIf": [],
+          "drawCount": 3,
+          "answers": [
+            { "id": "scribe", "label": "Писарь", "setFlags": ["educated"] },
+            { "id": "thief", "label": "Вор", "setFlags": ["criminal"] },
+            { "id": "hunter", "label": "Охотник", "setFlags": ["survivalist"] },
+            { "id": "smith", "label": "Кузнец", "setFlags": ["craftsman"] },
+            { "id": "healer", "label": "Лекарь", "setFlags": ["educated", "healer"] }
+          ]
+        },
+        {
+          "id": "crime",
+          "title": "Твоё тёмное прошлое",
+          "type": "question",
+          "mode": "multi",
+          "showIf": [{ "flag": "criminal", "equals": true }],
+          "answers": [
+            { "id": "smuggling", "label": "Контрабанда", "setFlags": ["smuggler"] },
+            { "id": "burglary", "label": "Кражи со взломом", "setFlags": ["burglar"] }
+          ]
+        }
+      ],
+      "outcomeTemplate": "Ты родом из {{homeland}}. {{#if from_capital}}Вырос в квартале {{district}}.{{/if}} Занятие: {{job}}. {{#if criminal}}За тобой тянется тёмное прошлое: {{crime}}.{{/if}}{{#if educated}} Ты грамотен и начитан.{{/if}}"
+    }
+  ],
+  "maps": [
+    {
+      "id": "world-map",
+      "title": "Карта Империи",
+      "svgFile": "maps/world.svg",
+      "regions": [
+        {
+          "id": "region-capital",
+          "svgElementId": "g-capital",
+          "name": "Столица Аркос",
+          "description": "Сердце империи, город башен и интриг.",
+          "image": "images/capital.jpg",
+          "bonuses": ["+1 к красноречию"],
+          "classes": ["Плут", "Маг"],
+          "setFlags": ["from_capital"]
+        },
+        {
+          "id": "region-wilds",
+          "svgElementId": "p-wilds",
+          "name": "Дикие земли",
+          "description": "Леса и пустоши за пределами закона.",
+          "bonuses": ["+1 к выживанию"],
+          "classes": ["Следопыт"],
+          "setFlags": ["from_wilds", "survivalist"]
+        }
+      ]
+    },
+    {
+      "id": "capital-map",
+      "title": "Карта столицы",
+      "svgFile": "maps/capital.svg",
+      "regions": [
+        {
+          "id": "district-docks",
+          "svgElementId": "p-docks",
+          "name": "Доки",
+          "description": "Портовый квартал, контрабанда и таверны.",
+          "setFlags": ["docks"]
+        },
+        {
+          "id": "district-towers",
+          "svgElementId": "p-towers",
+          "name": "Квартал Башен",
+          "description": "Дома знати и академия.",
+          "setFlags": ["towers", "educated"]
+        }
+      ]
+    }
+  ]
 }
